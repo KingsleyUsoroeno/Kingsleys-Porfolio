@@ -1,0 +1,445 @@
+:root {
+    --bg: #09090B;
+    /* near black: primary background */
+    --card: #18181B;
+    /* charcoal: cards and surfaces */
+    --accent: #A78BFA;
+    /* soft violet: primary accent and buttons */
+    --accent-hover: #8B5CF6;
+    /* hover violet */
+    --cyan: #22D3EE;
+    /* cyan: links and highlights */
+    --ink: #FAFAFA;
+    /* off white: headings and primary text */
+    --muted: #A1A1AA;
+    /* secondary text */
+    --line: #27272A;
+    /* subtle borders */
+    --muted-bg: #202024;
+    /* muted backgrounds */
+    --success: #34D399;
+    --card-ink: #FAFAFA;
+    --card-muted: #A1A1AA;
+    --card-link: #22D3EE;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.05rem/1.65 Geist, system-ui, sans-serif;
+    overflow-x: hidden
+}
+
+a {
+    color: inherit
+}
+
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px
+}
+
+.wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 1.5rem
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    z-index: 5
+}
+
+nav .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px
+}
+
+nav b {
+    font-weight: 700;
+    font-size: 1.1rem
+}
+
+nav ul {
+    display: flex;
+    gap: 1.4rem;
+    list-style: none;
+    padding: 0
+}
+
+nav a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: .95rem
+}
+
+nav a:hover {
+    color: var(--accent)
+}
+
+.hero {
+    padding: 5.5rem 0 4.5rem;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2.5rem 3rem;
+    align-items: center
+}
+
+.hero-circle {
+
+    display:block;
+  width:320px;
+  height:320px;
+  border-radius:50%;
+  object-fit:cover;          /* fills the circle without stretching your photo */
+  object-position:85% 60%;   /* keeps your face in view */
+  background:var(--accent);
+  animation:float 7s ease-in-out infinite;
+}
+
+.hero h1 {
+    grid-column: 1/-1;
+    font: 700 clamp(2.6rem, 8vw, 5rem)/1.04 Geist, sans-serif;
+    letter-spacing: -.04em;
+    max-width: 18ch
+}
+
+.hero h1 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(.5em);
+    animation: rise .7s cubic-bezier(.2, .7, .2, 1) forwards
+}
+
+.hero p {
+    margin-top: 0;
+    max-width: 48ch;
+    font-size: 1.2rem;
+    color: var(--muted);
+    opacity: 0;
+    animation: rise .7s .7s forwards
+}
+
+.btns {
+    margin-top: 2rem;
+    display: flex;
+    gap: .8rem;
+    flex-wrap: wrap
+}
+
+.hero .btns {
+    opacity: 0;
+    animation: rise .7s .9s forwards
+}
+
+.btn {
+    padding: .75rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 2px solid var(--ink);
+    transition: transform .2s, background .2s, color .2s
+}
+
+.btn.main {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg)
+}
+
+.btn:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: var(--bg);
+    transform: translateY(-2px)
+}
+
+@keyframes rise {
+    to {
+        opacity: 1;
+        transform: none
+    }
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(24px)
+    }
+}
+
+section {
+    padding: 3.5rem 0
+}
+
+h2 {
+    font: 700 2rem/1.2 Geist, sans-serif;
+    letter-spacing: -.03em;
+    margin-bottom: 1.6rem
+}
+
+.about {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2.5rem
+}
+
+.about p+p {
+    margin-top: 1rem
+}
+
+.facts {
+    list-style: none;
+    padding: 1.2rem 1.4rem;
+    background: var(--card);
+    border-radius: 18px;
+    font-size: .95rem;
+    color: var(--card-muted);
+    align-self: start
+}
+
+.facts li {
+    padding: .6rem 0;
+    border-bottom: 1px solid var(--line)
+}
+
+.facts li:last-child {
+    border: 0
+}
+
+.facts b {
+    display: block;
+    color: var(--card-ink);
+    font-weight: 600
+}
+
+.work {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem
+}
+
+.card {
+    background: var(--card);
+    border-radius: 18px;
+    padding: 1.5rem;
+    text-decoration: none;
+    display: block;
+    border: 1px solid var(--line);
+    transition: transform .25s, border-color .25s
+}
+
+.card:hover {
+    transform: translateY(-5px) rotate(-.6deg);
+    border-color: var(--accent)
+}
+
+.card h3 {
+    color: var(--card-ink);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .4rem
+}
+
+.card p {
+    color: var(--card-muted);
+    font-size: .95rem
+}
+
+.card small {
+    display: block;
+    margin-top: 1rem;
+    color: var(--card-link);
+    font-weight: 600
+}
+
+.job {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--line)
+}
+
+.job time {
+    color: var(--muted);
+    font-size: .95rem;
+    font-weight: 500
+}
+
+.job h3 {
+    font-size: 1.1rem;
+    font-weight: 700
+}
+
+.job h3 span {
+    font-weight: 500;
+    color: var(--muted)
+}
+
+.job ul {
+    margin: .5rem 0 0 1.1rem;
+    color: var(--muted);
+    font-size: .97rem
+}
+
+.job li {
+    margin-top: .3rem
+}
+
+.tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem
+}
+
+.tools span {
+    padding: .45rem 1rem;
+    border-radius: 999px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    color: var(--card-ink);
+    font-weight: 500;
+    font-size: .95rem;
+    transition: background .2s, color .2s, transform .2s
+}
+
+.tools span:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px)
+}
+
+.contact p {
+    max-width: 44ch;
+    color: var(--muted);
+    margin-bottom: 1.5rem
+}
+
+footer {
+    padding: 2rem 0;
+    font-size: .9rem;
+    color: var(--muted)
+}
+
+.exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.2rem
+}
+
+.exp-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding:1rem 1rem 1.4rem 1.6rem;
+    transition: transform .25s, border-color .25s
+}
+
+.exp-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent)
+}
+
+.exp-card time {
+    display: inline-block;
+    background: var(--muted-bg);
+    color: var(--accent);
+    border: 1px solid var(--line);
+    font-size: .85rem;
+    font-weight: 500;
+    padding: .25rem .8rem;
+    border-radius: 999px
+}
+
+.exp-card h3 {
+    color: var(--ink);
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 1rem
+}
+
+.exp-card .company {
+    color: var(--accent);
+    font-weight: 600
+}
+
+.exp-card ul {
+    margin: 1rem 0 0 1.1rem;
+    color: var(--muted);
+    font-size: .97rem
+}
+
+.exp-card li+li {
+    margin-top: .8rem
+}
+
+.exp-card li.extra{display:none}
+.exp-card.open li.extra{display:list-item}
+
+.exp-toggle{
+  margin-top:1rem;
+  background:none;
+  border:0;
+  padding:0;
+  font:inherit;
+  font-weight:600;
+  color:var(--cyan);
+  cursor:pointer;
+}
+.exp-toggle:hover{color:var(--accent)}
+
+@media(max-width:640px) {
+    nav ul {
+        gap: .9rem
+    }
+
+    nav a {
+        font-size: .85rem
+    }
+
+    .hero {
+        padding: 3rem 0;
+        grid-template-columns: 1fr;
+        gap: 2.5rem
+    }
+
+    .hero-circle {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto
+    }
+
+    .about,
+    .job {
+        grid-template-columns: 1fr;
+        gap: .4rem
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    * {
+        animation: none !important;
+        transition: none !important
+    }
+
+    .hero h1 span,
+    .hero p,
+    .hero .btns {
+        opacity: 1;
+        transform: none
+    }
+}
